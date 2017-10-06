@@ -2,6 +2,8 @@ package Interface;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -12,6 +14,7 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextPane;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.Color;
 
@@ -59,7 +62,29 @@ public class Principal extends JFrame {
 		
 		lblLogin = new JLabel("Login");
 		
-		JButton btnEntrar = new JButton("Entrar");
+		final JButton btnEntrar = new JButton("Entrar");
+		
+		btnEntrar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				String nome = textField_Login.getText();
+				String psd = textField_Senha.getText();
+				
+				
+				if(nome.equals("usuario") && psd.equals("1234")){
+					JOptionPane.showMessageDialog(btnEntrar,"Você está Logado");
+					
+					LoginAluno loginAluno = new LoginAluno();
+					loginAluno.setVisible(true);
+				}
+				else{
+					JOptionPane.showMessageDialog(btnEntrar,"Login ou senha incorretos");
+				}
+				
+			}
+		});
+		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -100,3 +125,4 @@ public class Principal extends JFrame {
 		contentPane.setLayout(gl_contentPane);
 	}
 }
+
