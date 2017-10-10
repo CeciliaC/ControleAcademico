@@ -1,6 +1,8 @@
 package Model;
 
 import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 public class Aluno {
 	int id;
@@ -13,15 +15,30 @@ public class Aluno {
 	String periodo;
 	int matricula;
 	
-	public Aluno(int id, String nome, String endereco, String cpf, Date dta_nascimento, Date dta_ingresso, String curso,
+	
+	public Aluno(int id, String nome, String endereco, String cpf, String dta_nascimento,String dta_ingresso, String curso,
 			String periodo, int matricula) {
+		
+		
 		super();
+		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+		
 		this.id = id;
 		this.nome = nome;
 		this.endereco = endereco;
 		this.cpf = cpf;
-		this.dta_nascimento = dta_nascimento;
-		this.dta_ingresso = dta_ingresso;
+		try {
+			this.dta_nascimento = (Date) formato.parse(dta_nascimento);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			this.dta_ingresso = (Date) formato.parse(dta_ingresso);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		this.curso = curso;
 		this.periodo = periodo;
 		this.matricula = matricula;

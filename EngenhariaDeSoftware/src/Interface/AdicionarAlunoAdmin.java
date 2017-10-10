@@ -6,14 +6,22 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Dao.AlunoDao;
+import Model.Aluno;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.awt.event.ActionEvent;
 
 public class AdicionarAlunoAdmin extends JFrame {
@@ -100,10 +108,44 @@ public class AdicionarAlunoAdmin extends JFrame {
 		
 		JButton cadastroMatricula_botao = new JButton("Confirmar");
 		
+		cadastroMatricula_botao.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				AlunoDao alunodao = new AlunoDao();
+				
+				int id=0;
+				String Vcpf = cpf.getText();
+				String Vdta_nasc = dt_nasc.getText();
+				String Vdta_ing = dt_ing.getText();
+				String Vendereco = endereco.getText();
+				String Vnome = nome.getText();
+				int Vmatricula = Integer.parseInt(matricula.getText());
+				String Vcurso = curso.getText();
+				String Vperiodo = periodo.getText();
+				
+				Aluno aluno = new Aluno(id,Vnome,Vendereco,Vcpf,Vdta_nasc,Vdta_ing,Vcurso,Vperiodo,Vmatricula);
+				
+				alunodao.inserir(aluno);
+				
+				JOptionPane.showMessageDialog(null, "Aluno cadastrado com sucesso!");
+				
+			}
+		});
+		
+		
+		
 		JButton matriculaVoltar_botao = new JButton("Voltar");
 		matriculaVoltar_botao.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
+			
+			
+			
+			
+    
+			
+			
 		});
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
