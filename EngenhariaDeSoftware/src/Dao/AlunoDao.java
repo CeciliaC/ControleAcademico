@@ -23,7 +23,7 @@ public class AlunoDao {
 	    
 	    
 	    public void inserir(Aluno aluno){  
-            String sql = "INSERT INTO Aluno(Nome,DataDeIngresso,NivelDeEscolaridade,Telefone,Endereco,DataDeNascimento,CPF,Senha) "+"VALUES(?,?,?,?,?,?,?,?)";  
+            String sql = "INSERT INTO aluno(Nome,DataDeIngresso,NivelDeEscolaridade,Telefone,Endereco,DataDeNascimento,CPF,Senha) "+"VALUES(?,?,?,?,?,?,?,?)";  
             try {  
                 PreparedStatement stmt = con.prepareStatement(sql);  
                 stmt.setString(1, aluno.getNome());  
@@ -36,7 +36,7 @@ public class AlunoDao {
                 java.sql.Date dtnasc = new Date(aluno.getDta_nascimento().getTime());
                 System.out.println(dtnasc);
                 stmt.setDate(6, dtnasc);
-                stmt.setString(7, aluno.getCpf());
+                stmt.setInt(7, aluno.getCpf());
                 stmt.setString(8, aluno.getSenha());
                
                 
@@ -47,7 +47,7 @@ public class AlunoDao {
                 
                 
                 stmt.execute();  
-                stmt.close();  
+                stmt.close();
             } catch (SQLException u) {  
                 throw new RuntimeException(u);  
         }  

@@ -117,7 +117,7 @@ public class AdicionarAlunoAdmin extends JFrame {
 				AlunoDao alunodao = new AlunoDao();
 				
 				int id=0;
-				String Vcpf = cpf.getText();
+				int Vcpf = Integer.parseInt(cpf.getText());
 				String Vdta_nasc = dt_nasc.getText();
 				String Vdta_ing = dt_ing.getText();
 				String Vendereco = endereco.getText();

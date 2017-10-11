@@ -8,7 +8,7 @@ public class Aluno {
 	int id;
 	String nome;
 	String endereco;
-	String cpf;
+	int cpf;
 	Date dta_nascimento;
 	Date dta_ingresso;
 	String curso;
@@ -18,7 +18,7 @@ public class Aluno {
 	int telefone;
 	String nivelEscolaridade;
 
-	public Aluno(int id, String nome, String endereco, String cpf, String dta_nascimento, String dta_ingresso,
+	public Aluno(int id, String nome, String endereco, int cpf, String dta_nascimento, String dta_ingresso,
 			String curso, String periodo, int matricula,String senha,int telefone,String nivelEscolaridade ) {
 
 		super();
@@ -77,11 +77,11 @@ public class Aluno {
 		this.endereco = endereco;
 	}
 
-	public String getCpf() {
+	public int getCpf() {
 		return cpf;
 	}
 
-	public void setCpf(String cpf) {
+	public void setCpf(int cpf) {
 		this.cpf = cpf;
 	}
 
