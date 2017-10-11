@@ -20,8 +20,6 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.awt.event.ActionEvent;
 
 public class AdicionarAlunoAdmin extends JFrame {
@@ -120,7 +118,7 @@ public class AdicionarAlunoAdmin extends JFrame {
 				String Vdta_ing = dt_ing.getText();
 				String Vendereco = endereco.getText();
 				String Vnome = nome.getText();
-				int Vmatricula = Integer.parseInt(matricula.getText());
+				int Vmatricula = 2;
 				String Vcurso = curso.getText();
 				String Vperiodo = periodo.getText();
 				
