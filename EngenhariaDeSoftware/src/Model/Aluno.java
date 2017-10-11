@@ -14,9 +14,12 @@ public class Aluno {
 	String curso;
 	String periodo;
 	int matricula;
+	String senha;
+	int telefone;
+	String nivelEscolaridade;
 
 	public Aluno(int id, String nome, String endereco, String cpf, String dta_nascimento, String dta_ingresso,
-			String curso, String periodo, int matricula) {
+			String curso, String periodo, int matricula,String senha,int telefone,String nivelEscolaridade ) {
 
 		super();
 		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
@@ -43,6 +46,11 @@ public class Aluno {
 		this.curso = curso;
 		this.periodo = periodo;
 		this.matricula = matricula;
+		this.senha = senha;
+		this.telefone = telefone;
+		this.nivelEscolaridade = nivelEscolaridade;
+		
+		
 	}
 
 	public int getId() {
@@ -116,5 +124,30 @@ public class Aluno {
 	public void setMatricula(int matricula) {
 		this.matricula = matricula;
 	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+	public int getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(int telefone) {
+		this.telefone = telefone;
+	}
+
+	public String getNivelEscolaridade() {
+		return nivelEscolaridade;
+	}
+
+	public void setNivelEscolaridade(String nivelEscolaridade) {
+		this.nivelEscolaridade = nivelEscolaridade;
+	}
+	
 
 }

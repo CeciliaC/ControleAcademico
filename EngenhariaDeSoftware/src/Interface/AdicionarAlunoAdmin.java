@@ -22,6 +22,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 public class AdicionarAlunoAdmin extends JFrame {
 
@@ -36,7 +37,7 @@ public class AdicionarAlunoAdmin extends JFrame {
 	private JTextField periodo;
 	private JTextField telefone;
 	private JTextField senha;
-
+	JComboBox escolaridade = new JComboBox();
 	/**
 	 * Launch the application.
 	 */
@@ -124,8 +125,12 @@ public class AdicionarAlunoAdmin extends JFrame {
 				int Vmatricula = 2;
 				String Vcurso = curso.getText();
 				String Vperiodo = periodo.getText();
+				String Vsenha = senha.getText();
+				int Vtelefone = Integer.parseInt(telefone.getText());
+				String Vescolaridade = escolaridade.getSelectedItem()+"";
 				
-				Aluno aluno = new Aluno(id,Vnome,Vendereco,Vcpf,Vdta_nasc,Vdta_ing,Vcurso,Vperiodo,Vmatricula);
+				
+				Aluno aluno = new Aluno(id,Vnome,Vendereco,Vcpf,Vdta_nasc,Vdta_ing,Vcurso,Vperiodo,Vmatricula,Vsenha,Vtelefone,Vescolaridade);
 				
 				alunodao.inserir(aluno);
 				
@@ -161,7 +166,8 @@ public class AdicionarAlunoAdmin extends JFrame {
 		senha = new JTextField();
 		senha.setColumns(10);
 		
-		JComboBox comboBox = new JComboBox();
+		
+		escolaridade.setModel(new DefaultComboBoxModel(new String[] {"Graducao ", "Mestrado", "Doutorado"}));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -204,7 +210,7 @@ public class AdicionarAlunoAdmin extends JFrame {
 										.addComponent(lblSenha))
 									.addPreferredGap(ComponentPlacement.RELATED)
 									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-										.addComponent(comboBox, 0, 183, Short.MAX_VALUE)
+										.addComponent(escolaridade, 0, 183, Short.MAX_VALUE)
 										.addComponent(senha, GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
 										.addComponent(telefone))))
 							.addGap(169))
@@ -237,7 +243,7 @@ public class AdicionarAlunoAdmin extends JFrame {
 						.addComponent(lblCpf)
 						.addComponent(cpf, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblEscolaridade)
-						.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(escolaridade, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblDataDeNascimento)

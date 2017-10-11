@@ -23,23 +23,28 @@ public class AlunoDao {
 	    
 	    
 	    public void inserir(Aluno aluno){  
-            String sql = "INSERT INTO teste(nome,endereco,cpf,dta_nascimento,dta_ingresso,curso,periodo,matricula) VALUES(?,?,?,?,?,?,?,?)";  
+            String sql = "INSERT INTO Aluno(Nome,DataDeIngresso,NivelDeEscolaridade,Telefone,Endereco,DataDeNascimento,CPF,Senha) "+"VALUES(?,?,?,?,?,?,?,?)";  
             try {  
                 PreparedStatement stmt = con.prepareStatement(sql);  
                 stmt.setString(1, aluno.getNome());  
-                stmt.setString(2, aluno.getEndereco());
-                stmt.setString(3, aluno.getCpf()); 
+                java.sql.Date dtingre = new Date(aluno.getDta_ingresso().getTime());
+                stmt.setDate(2, dtingre);
+                stmt.setString(3,aluno.getNivelEscolaridade());
+                stmt.setInt(4,aluno.getTelefone());
+                stmt.setString(5, aluno.getEndereco());
                 
                 java.sql.Date dtnasc = new Date(aluno.getDta_nascimento().getTime());
                 System.out.println(dtnasc);
-                stmt.setDate(4, dtnasc);
-                java.sql.Date dtingre = new Date(aluno.getDta_ingresso().getTime());
-                stmt.setDate(5, dtingre);
+                stmt.setDate(6, dtnasc);
+                stmt.setString(7, aluno.getCpf());
+                stmt.setString(8, aluno.getSenha());
+               
                 
                 
-                stmt.setString(6, aluno.getCurso()); 
-                stmt.setString(7, aluno.getPeriodo()); 
-                stmt.setInt(8, aluno.getMatricula()); 
+                
+//                stmt.setString(9, aluno.getCurso()); 
+//                stmt.setString(10, aluno.getPeriodo()); 
+                
                 
                 stmt.execute();  
                 stmt.close();  
