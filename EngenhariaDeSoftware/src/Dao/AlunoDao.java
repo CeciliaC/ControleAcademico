@@ -1,7 +1,9 @@
 package Dao;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.Date;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
@@ -12,18 +14,18 @@ public class AlunoDao {
 	
 	 private Connection con;
 
+
 	    public AlunoDao()  {
 	        try {
 				this.con = ConnectionFactory.getConexao();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 	    }
 	    
 	    
 	    public void inserir(Aluno aluno){  
-            String sql = "INSERT INTO aluno(nome,data_de_ingresso,nivel_de_escolaridade,endereco,data_de_nascimento,cpf,senha,telefones) "+"VALUES(?,?,?,?,?,?,?,?)";  
+            String sql = "INSERT INTO aluno(nome,data_de_ingresso,nivel_de_escolaridade,endereco,data_de_nascimento,cpf,senha,telefone) "+"VALUES(?,?,?,?,?,?,?,?)";  
             try {  
                 PreparedStatement stmt = con.prepareStatement(sql);  
                 stmt.setString(1, aluno.getNome());  
@@ -39,6 +41,8 @@ public class AlunoDao {
                 stmt.setInt(6, aluno.getCpf());
                 stmt.setString(7, aluno.getSenha());
                 stmt.setInt(8,aluno.getTelefone());
+                
+                
                
                 
                 

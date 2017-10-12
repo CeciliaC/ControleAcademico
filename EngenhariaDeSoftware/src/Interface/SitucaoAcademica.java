@@ -10,6 +10,9 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
@@ -167,6 +170,18 @@ public class SitucaoAcademica extends JFrame {
 					.addContainerGap(119, Short.MAX_VALUE))
 		);
 		contentPane.setLayout(gl_contentPane);
+		
+		btnVoltar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				LoginAluno la = new LoginAluno();
+				la.setVisible(true);
+				SitucaoAcademica.this.setVisible(false);
+				SitucaoAcademica.this.dispose();
+			}
+		});
 	}
 
 }

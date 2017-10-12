@@ -1,22 +1,22 @@
 package Interface;
 
-import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JTextField;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JTextPane;
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JButton;
-import java.awt.Color;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.border.EmptyBorder;
+
+import Dao.PrincipalDao;
 
 public class Principal extends JFrame {
 
@@ -68,18 +68,23 @@ public class Principal extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				String nome = textField_Login.getText();
+				int nome = Integer.parseInt(textField_Login.getText());
 				String psd = textField_Senha.getText();
+				PrincipalDao pd = new PrincipalDao();
 				
-				
-				if(nome.equals("usuario") && psd.equals("1234")){
-					JOptionPane.showMessageDialog(btnEntrar,"Você está Logado");
+				if(pd.buscarLoginAluno(nome, psd)) {
+					LoginAluno la = new LoginAluno();
+					la.setVisible(true);
+					Principal.this.setVisible(false);
+					Principal.this.dispose();
+				}else {
+					if(pd.buscarLoginAdmin(nome, psd)) {
+						Admin ad = new Admin();
+						ad.setVisible(true);
+						Principal.this.setVisible(false);
+						Principal.this.dispose();
+					}
 					
-					LoginAluno loginAluno = new LoginAluno();
-					loginAluno.setVisible(true);
-				}
-				else{
-					JOptionPane.showMessageDialog(btnEntrar,"Login ou senha incorretos");
 				}
 				
 			}

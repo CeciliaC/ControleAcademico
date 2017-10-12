@@ -132,5 +132,17 @@ public class Matricula extends JFrame {
 					.addGap(21))
 		);
 		contentPane.setLayout(gl_contentPane);
+		
+		voltarMatricula_botao.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				LoginAluno la = new LoginAluno();
+				la.setVisible(true);
+				Matricula.this.setVisible(false);
+				Matricula.this.dispose();
+			}
+		});
 	}
 }

@@ -144,6 +144,10 @@ public class AdicionarAlunoAdmin extends JFrame {
 		JButton matriculaVoltar_botao = new JButton("Voltar");
 		matriculaVoltar_botao.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Admin ad = new Admin();
+				ad.setVisible(true);
+				AdicionarAlunoAdmin.this.setVisible(false);
+				AdicionarAlunoAdmin.this.dispose();
 			}
 			
 			

@@ -1,11 +1,13 @@
 package Interface;
 
-import org.eclipse.wb.swing.FocusTraversalOnArray;
 import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Date;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -20,6 +22,10 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
+
+import org.eclipse.wb.swing.FocusTraversalOnArray;
+
+import Dao.LoginAlunoDao;
 
 public class LoginAluno extends JFrame {
 
@@ -60,7 +66,6 @@ public class LoginAluno extends JFrame {
 		JLabel lblNome = new JLabel("Nome:");
 		
 		txtAluno = new JTextField();
-		txtAluno.setText("Aluno");
 		txtAluno.setEditable(false);
 		txtAluno.setColumns(10);
 		
@@ -327,5 +332,36 @@ public class LoginAluno extends JFrame {
 		panel.setLayout(gl_panel);
 		contentPane.setLayout(gl_contentPane);
 		contentPane.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{txtAv, lblNome, txtAluno, lblCurso, txtAgronegcio, lblDataDeNascimento, textField_1, lblEndereo, textArea, lblPara, textField, lblAssunto, textField_2, btnEnviar}));
+		
+		LoginAlunoDao lad = new LoginAlunoDao();
+		LoginAluno.this.preencherPerfil(lad.getNome(), "", "");
+		
+		Situacao_Academica.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				SitucaoAcademica as = new SitucaoAcademica();
+				as.setVisible(true);
+				LoginAluno.this.setVisible(false);
+				LoginAluno.this.dispose();
+			}
+		});
+		Matricula.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				Matricula m = new Matricula();
+				m.setVisible(true);
+				LoginAluno.this.setVisible(false);
+				LoginAluno.this.dispose();
+			}
+		});
+		
 	}
+	public void preencherPerfil(String nome, String curso, String endereco) {
+		txtAluno.setText(nome);
+	}
+	
 }

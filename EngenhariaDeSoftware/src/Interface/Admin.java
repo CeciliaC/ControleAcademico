@@ -2,6 +2,8 @@ package Interface;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -128,5 +130,28 @@ public class Admin extends JFrame {
 		JButton voltar_botao = new JButton("Voltar");
 		voltar_botao.setBounds(685, 11, 89, 23);
 		contentPane.add(voltar_botao);
+		voltar_botao.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Principal p = new Principal();
+				p.setVisible(true);
+				Admin.this.setVisible(false);
+				Admin.this.dispose();
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		adicionaraluno_botao.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				AdicionarAlunoAdmin aaa = new AdicionarAlunoAdmin();
+				aaa.setVisible(true);
+				Admin.this.setVisible(false);
+				Admin.this.dispose();
+			}
+		});
 	}
 }
