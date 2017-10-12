@@ -23,21 +23,22 @@ public class AlunoDao {
 	    
 	    
 	    public void inserir(Aluno aluno){  
-            String sql = "INSERT INTO aluno(Nome,DataDeIngresso,NivelDeEscolaridade,Telefone,Endereco,DataDeNascimento,CPF,Senha) "+"VALUES(?,?,?,?,?,?,?,?)";  
+            String sql = "INSERT INTO aluno(nome,data_de_ingresso,nivel_de_escolaridade,endereco,data_de_nascimento,cpf,senha,telefones) "+"VALUES(?,?,?,?,?,?,?,?)";  
             try {  
                 PreparedStatement stmt = con.prepareStatement(sql);  
                 stmt.setString(1, aluno.getNome());  
                 java.sql.Date dtingre = new Date(aluno.getDta_ingresso().getTime());
                 stmt.setDate(2, dtingre);
                 stmt.setString(3,aluno.getNivelEscolaridade());
-                stmt.setInt(4,aluno.getTelefone());
-                stmt.setString(5, aluno.getEndereco());
+                
+                stmt.setString(4, aluno.getEndereco());
                 
                 java.sql.Date dtnasc = new Date(aluno.getDta_nascimento().getTime());
-                System.out.println(dtnasc);
-                stmt.setDate(6, dtnasc);
-                stmt.setInt(7, aluno.getCpf());
-                stmt.setString(8, aluno.getSenha());
+                stmt.setDate(5, dtnasc);
+                
+                stmt.setInt(6, aluno.getCpf());
+                stmt.setString(7, aluno.getSenha());
+                stmt.setInt(8,aluno.getTelefone());
                
                 
                 
