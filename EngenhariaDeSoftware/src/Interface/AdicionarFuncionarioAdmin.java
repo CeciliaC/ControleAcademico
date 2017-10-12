@@ -6,9 +6,17 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Dao.AlunoDao;
+import Dao.FuncionarioDao;
+import Model.Aluno;
+import Model.Funcionario;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextField;
@@ -16,6 +24,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 public class AdicionarFuncionarioAdmin extends JFrame {
 
@@ -28,10 +37,10 @@ public class AdicionarFuncionarioAdmin extends JFrame {
 	private JTextField matricula;
 	private JTextField curso;
 	private JTextField periodo;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_3;
-
+	private JTextField telefone;
+	private JTextField email;
+	private JTextField senha;
+	JComboBox nivelEscolaridade = new JComboBox();
 	/**
 	 * Launch the application.
 	 */
@@ -104,6 +113,40 @@ public class AdicionarFuncionarioAdmin extends JFrame {
 		
 		JButton cadastroMatricula_botao = new JButton("Confirmar");
 		
+cadastroMatricula_botao.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				FuncionarioDao funcionariodao = new FuncionarioDao();
+				
+				int id=0;
+				int Vcpf = Integer.parseInt(cpf.getText());
+				String Vdta_nasc = dt_nasc.getText();
+				String Vdta_ing = dt_ing.getText();
+				String Vendereco = endereco.getText();
+				String Vnome = nome.getText();
+				int Vmatricula = 2;
+				String Vcurso = curso.getText();
+				String Vperiodo = periodo.getText();
+				String Vsenha = senha.getText();
+				int Vtelefone = Integer.parseInt(telefone.getText());
+				String Vemail = email.getText();
+				String Vescolaridade = nivelEscolaridade.getSelectedItem()+"";
+				
+				
+				Funcionario funcionario = new Funcionario(id,Vnome,Vendereco,Vcpf,Vdta_nasc,Vdta_ing,Vcurso,Vperiodo,Vmatricula,Vtelefone,Vemail,Vescolaridade,Vsenha);
+				
+				funcionariodao.inserir(funcionario);
+				
+				JOptionPane.showMessageDialog(null, "Funcionario cadastrado com sucesso!");
+				
+			}
+		});
+		
+		
+		
+		
+		
 		JButton matriculaVoltar_botao = new JButton("Voltar");
 		matriculaVoltar_botao.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -118,16 +161,17 @@ public class AdicionarFuncionarioAdmin extends JFrame {
 		
 		JLabel lblSenha = new JLabel("Senha:");
 		
-		textField = new JTextField();
-		textField.setColumns(10);
+		telefone = new JTextField();
+		telefone.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
+		email = new JTextField();
+		email.setColumns(10);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
+		senha = new JTextField();
+		senha.setColumns(10);
 		
-		JComboBox comboBox = new JComboBox();
+		
+		nivelEscolaridade.setModel(new DefaultComboBoxModel(new String[] {"Graduacao", "Mestrado", "Doutorado"}));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -171,10 +215,10 @@ public class AdicionarFuncionarioAdmin extends JFrame {
 										.addComponent(lblSenha))
 									.addPreferredGap(ComponentPlacement.RELATED)
 									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-										.addComponent(comboBox, 0, 177, Short.MAX_VALUE)
-										.addComponent(textField_3, GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
-										.addComponent(textField_1, GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
-										.addComponent(textField)))))
+										.addComponent(nivelEscolaridade, 0, 177, Short.MAX_VALUE)
+										.addComponent(senha, GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+										.addComponent(email, GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+										.addComponent(telefone)))))
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGap(332)
 							.addComponent(cadastroMatricula_botao)))
@@ -198,7 +242,7 @@ public class AdicionarFuncionarioAdmin extends JFrame {
 						.addComponent(lblEndereo)
 						.addComponent(endereco, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblTelefone)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(telefone, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGap(18)
@@ -225,15 +269,15 @@ public class AdicionarFuncionarioAdmin extends JFrame {
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 								.addComponent(lblEmail)
-								.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+								.addComponent(email, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 							.addGap(18)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 								.addComponent(lblEscolaridade)
-								.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+								.addComponent(nivelEscolaridade, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 							.addGap(18)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 								.addComponent(lblSenha)
-								.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
+								.addComponent(senha, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
 					.addGap(18)
 					.addComponent(cadastroMatricula_botao)
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))

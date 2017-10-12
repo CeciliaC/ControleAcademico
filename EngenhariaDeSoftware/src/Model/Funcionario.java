@@ -1,30 +1,54 @@
 package Model;
 
-import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Funcionario {
 	int id;
 	String nome;
 	String endereco;
-	String cpf;
+	int cpf;
 	Date dta_nascimento;
 	Date dta_ingresso;
 	String curso;
 	String periodo;
 	int matricula;
+	int telefone;
+	String email;
+	String nivelEscolaridade;
+	String senha;
 	
-	public Funcionario(int id, String nome, String endereco, String cpf, Date dta_nascimento, Date dta_ingresso, String curso,
-			String periodo, int matricula) {
+	public Funcionario(int id, String nome, String endereco, int cpf, String dta_nascimento, String dta_ingresso,
+			String curso, String periodo, int matricula, int telefone, String email, String nivelEscolaridade,
+			String senha) {
 		super();
+		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+		
 		this.id = id;
 		this.nome = nome;
 		this.endereco = endereco;
 		this.cpf = cpf;
-		this.dta_nascimento = dta_nascimento;
-		this.dta_ingresso = dta_ingresso;
+		try {
+			this.dta_nascimento = formato.parse(dta_nascimento);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		try {
+			this.dta_ingresso = formato.parse(dta_ingresso);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		this.curso = curso;
 		this.periodo = periodo;
 		this.matricula = matricula;
+		this.telefone = telefone;
+		this.email = email;
+		this.nivelEscolaridade = nivelEscolaridade;
+		this.senha = senha;
 	}
 	public int getId() {
 		return id;
@@ -44,10 +68,10 @@ public class Funcionario {
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
 	}
-	public String getCpf() {
+	public int getCpf() {
 		return cpf;
 	}
-	public void setCpf(String cpf) {
+	public void setCpf(int cpf) {
 		this.cpf = cpf;
 	}
 	public Date getDta_nascimento() {
@@ -80,6 +104,30 @@ public class Funcionario {
 	public void setMatricula(int matricula) {
 		this.matricula = matricula;
 	}
-	
+	public int getTelefone() {
+		return telefone;
+	}
+	public void setTelefone(int telefone) {
+		this.telefone = telefone;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getNivelEscolaridade() {
+		return nivelEscolaridade;
+	}
+	public void setNivelEscolaridade(String nivelEscolaridade) {
+		this.nivelEscolaridade = nivelEscolaridade;
+	}
+	public String getSenha() {
+		return senha;
+	}
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
 	
 }
+	

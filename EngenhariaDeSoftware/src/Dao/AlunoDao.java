@@ -5,7 +5,10 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import Model.Aluno;
 import conexaoPostgres.ConnectionFactory;
@@ -22,7 +25,7 @@ public class AlunoDao {
 				e.printStackTrace();
 			}
 	    }
-	    
+	  // INSERINDO ALUNOS  
 	    
 	    public void inserir(Aluno aluno){  
             String sql = "INSERT INTO aluno(nome,data_de_ingresso,nivel_de_escolaridade,endereco,data_de_nascimento,cpf,senha,telefone) "+"VALUES(?,?,?,?,?,?,?,?)";  
@@ -31,26 +34,15 @@ public class AlunoDao {
                 stmt.setString(1, aluno.getNome());  
                 java.sql.Date dtingre = new Date(aluno.getDta_ingresso().getTime());
                 stmt.setDate(2, dtingre);
-                stmt.setString(3,aluno.getNivelEscolaridade());
-                
-                stmt.setString(4, aluno.getEndereco());
-                
+                stmt.setString(3,aluno.getNivelEscolaridade());                
+                stmt.setString(4, aluno.getEndereco());                
                 java.sql.Date dtnasc = new Date(aluno.getDta_nascimento().getTime());
-                stmt.setDate(5, dtnasc);
-                
+                stmt.setDate(5, dtnasc);                
                 stmt.setInt(6, aluno.getCpf());
                 stmt.setString(7, aluno.getSenha());
                 stmt.setInt(8,aluno.getTelefone());
                 
-                
-               
-                
-                
-                
-//                stmt.setString(9, aluno.getCurso()); 
-//                stmt.setString(10, aluno.getPeriodo()); 
-                
-                
+             
                 stmt.execute();  
                 stmt.close();
             } catch (SQLException u) {  
@@ -58,5 +50,33 @@ public class AlunoDao {
         }  
     }  
 	    
+	    //LISTANDO TODOS OS ALUNOS
+	    
+	    
+	    public List<Aluno> listar() throws SQLException {
+	        String sql = "SELECT * FROM aluno";
+	        PreparedStatement stmt = this.con.prepareStatement(sql);
+	        ResultSet rs = stmt.executeQuery();
+
+	        List<Aluno> aluno = new ArrayList<Aluno>();
+
+	        while (rs.next()) {
+	            Aluno reg = new Aluno();
+	            reg.setNome(rs.getString("nome"));
+	            reg.setDta_ingresso(rs.getDate("data_de_ingresso"));
+	            reg.setNivelEscolaridade(rs.getString("nivel_de_escolaridade"));	            
+	            reg.setEndereco(rs.getString("endereco"));
+	            reg.setDta_nascimento(rs.getDate("data_de_nascimento"));
+	            reg.setCpf(rs.getInt("cpf"));
+	            reg.setSenha(rs.getString("senha"));
+	            reg.setTelefone(rs.getInt("telefone"));
+	            
+	            
+	            aluno.add(reg);
+	        }
+	        rs.close();
+	        stmt.close();
+	        return aluno;
+	    }
 	    
 }

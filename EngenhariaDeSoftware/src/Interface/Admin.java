@@ -59,6 +59,7 @@ public class Admin extends JFrame {
 		
 		JList list = new JList();
 		
+		
 		JButton adicionaraluno_botao = new JButton("Adicionar Aluno");
 		
 		JButton removeraluno_botao = new JButton("Remover Aluno");

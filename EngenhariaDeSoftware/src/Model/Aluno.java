@@ -53,6 +53,9 @@ public class Aluno {
 		
 	}
 
+	public Aluno() {
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -148,6 +151,8 @@ public class Aluno {
 	public void setNivelEscolaridade(String nivelEscolaridade) {
 		this.nivelEscolaridade = nivelEscolaridade;
 	}
+
+	
 	
 
 }
