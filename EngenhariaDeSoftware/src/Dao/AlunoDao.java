@@ -79,5 +79,13 @@ public class AlunoDao {
 	        stmt.close();
 	        return aluno;
 	    }
-	    
+	    // REMOVER ALUNO
+	    public void remove(Aluno id) throws SQLException {
+	        String sql = "DELETE FROM aluno where id=?";
+	        PreparedStatement stmt = con.prepareStatement(sql);
+	        stmt.setInt(1, id.getId());
+	        stmt.execute();
+	        stmt.close();
+	    }
+
 }

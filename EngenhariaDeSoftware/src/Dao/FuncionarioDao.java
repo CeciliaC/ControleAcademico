@@ -82,6 +82,16 @@ public class FuncionarioDao {
 	        rs.close();
 	        stmt.close();
 	        return funcionario;
-	    }   
+	    }  
+	    
+	    
+	    // REMOVER FUNCIONARIO
+	    public void remove(Funcionario id) throws SQLException {
+	        String sql = "DELETE FROM funcionario where id=?";
+	        PreparedStatement stmt = con.prepareStatement(sql);
+	        stmt.setInt(1, id.getId());
+	        stmt.execute();
+	        stmt.close();
+	    }
 	    
 }
