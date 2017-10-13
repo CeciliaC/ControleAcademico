@@ -19,13 +19,12 @@ public class Funcionario {
 	String nivelEscolaridade;
 	String senha;
 	
-	public Funcionario(int id, String nome, String endereco, int cpf, String dta_nascimento, String dta_ingresso,
+	public Funcionario(String nome, String endereco, int cpf, String dta_nascimento, String dta_ingresso,
 			String curso, String periodo, int matricula, int telefone, String email, String nivelEscolaridade,
 			String senha) {
 		super();
 		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 		
-		this.id = id;
 		this.nome = nome;
 		this.endereco = endereco;
 		this.cpf = cpf;
@@ -49,6 +48,9 @@ public class Funcionario {
 		this.email = email;
 		this.nivelEscolaridade = nivelEscolaridade;
 		this.senha = senha;
+	}
+	public Funcionario() {
+		// TODO Auto-generated constructor stub
 	}
 	public int getId() {
 		return id;
@@ -128,6 +130,14 @@ public class Funcionario {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
+	@Override
+	public String toString() {
+		return "Funcionario [id=" + id + ", nome=" + nome + ", endereco=" + endereco + ", cpf=" + cpf
+				+ ", dta_nascimento=" + dta_nascimento + ", dta_ingresso=" + dta_ingresso + ", curso=" + curso
+				+ ", periodo=" + periodo + ", matricula=" + matricula + ", telefone=" + telefone + ", email=" + email
+				+ ", nivelEscolaridade=" + nivelEscolaridade + "]";
+	}
+	
 	
 }
 	

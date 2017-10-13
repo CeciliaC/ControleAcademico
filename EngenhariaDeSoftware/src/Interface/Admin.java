@@ -13,7 +13,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Dao.AlunoDao;
+import Dao.FuncionarioDao;
 import Model.Aluno;
+import Model.Funcionario;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -116,7 +118,20 @@ public class Admin extends JFrame {
 		JPanel Funcionário = new JPanel();
 		tabbedPane.addTab("Funcionário", null, Funcionário, null);
 		
+		//METODO LISTAR FUNCIONARIO
+		FuncionarioDao funcionariolistar = new FuncionarioDao();
 		JList list_1 = new JList();
+		
+		List<Funcionario> funcionarios = null;
+		try {
+			funcionarios = funcionariolistar.listar();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+				
+		list_1.setListData(funcionarios.toArray());
+		
+
 		
 		JButton adicionarfuncionario_botao = new JButton("Adicionar Funcion\u00E1rio");
 		

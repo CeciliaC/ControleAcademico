@@ -5,7 +5,10 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import Model.Aluno;
 import Model.Funcionario;
@@ -50,6 +53,35 @@ public class FuncionarioDao {
                 throw new RuntimeException(u);  
         }  
     }  
+    //LISTANDO TODOS OS FUNCIONARIOS
 	    
+	    
+	    public List<Funcionario> listar() throws SQLException {
+	        String sql = "SELECT * FROM funcionario";
+	        PreparedStatement stmt = this.con.prepareStatement(sql);
+	        ResultSet rs = stmt.executeQuery();
+
+	        List<Funcionario> funcionario = new ArrayList<Funcionario>();
+
+	        while (rs.next()) {
+	            Funcionario reg = new Funcionario();
+	            reg.setId(rs.getInt("id"));
+	            reg.setNome(rs.getString("nome"));
+	            reg.setDta_nascimento(rs.getDate("data_de_nascimento"));
+	            reg.setTelefone(rs.getInt("telefone"));
+	            reg.setEmail(rs.getString("email"));  
+	            reg.setDta_ingresso(rs.getDate("data_de_ingresso"));
+	            reg.setNivelEscolaridade(rs.getString("nivel_de_escolaridade"));	            
+	            reg.setEndereco(rs.getString("endereco"));	            
+	            reg.setCpf(rs.getInt("cpf"));
+	     
+	            
+	            
+	            funcionario.add(reg);
+	        }
+	        rs.close();
+	        stmt.close();
+	        return funcionario;
+	    }   
 	    
 }

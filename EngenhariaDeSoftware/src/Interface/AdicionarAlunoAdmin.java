@@ -116,7 +116,6 @@ public class AdicionarAlunoAdmin extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				AlunoDao alunodao = new AlunoDao();
 				
-				int id=0;
 				int Vcpf = Integer.parseInt(cpf.getText());
 				String Vdta_nasc = dt_nasc.getText();
 				String Vdta_ing = dt_ing.getText();
@@ -130,7 +129,7 @@ public class AdicionarAlunoAdmin extends JFrame {
 				String Vescolaridade = escolaridade.getSelectedItem()+"";
 				
 				
-				Aluno aluno = new Aluno(id,Vnome,Vendereco,Vcpf,Vdta_nasc,Vdta_ing,Vcurso,Vperiodo,Vmatricula,Vsenha,Vtelefone,Vescolaridade);
+				Aluno aluno = new Aluno(Vnome,Vendereco,Vcpf,Vdta_nasc,Vdta_ing,Vcurso,Vperiodo,Vmatricula,Vsenha,Vtelefone,Vescolaridade);
 				
 				alunodao.inserir(aluno);
 				

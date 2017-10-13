@@ -119,7 +119,6 @@ cadastroMatricula_botao.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				FuncionarioDao funcionariodao = new FuncionarioDao();
 				
-				int id=0;
 				int Vcpf = Integer.parseInt(cpf.getText());
 				String Vdta_nasc = dt_nasc.getText();
 				String Vdta_ing = dt_ing.getText();
@@ -134,7 +133,7 @@ cadastroMatricula_botao.addActionListener(new ActionListener() {
 				String Vescolaridade = nivelEscolaridade.getSelectedItem()+"";
 				
 				
-				Funcionario funcionario = new Funcionario(id,Vnome,Vendereco,Vcpf,Vdta_nasc,Vdta_ing,Vcurso,Vperiodo,Vmatricula,Vtelefone,Vemail,Vescolaridade,Vsenha);
+				Funcionario funcionario = new Funcionario(Vnome,Vendereco,Vcpf,Vdta_nasc,Vdta_ing,Vcurso,Vperiodo,Vmatricula,Vtelefone,Vemail,Vescolaridade,Vsenha);
 				
 				funcionariodao.inserir(funcionario);
 				

@@ -18,13 +18,12 @@ public class Aluno {
 	int telefone;
 	String nivelEscolaridade;
 
-	public Aluno(int id, String nome, String endereco, int cpf, String dta_nascimento, String dta_ingresso,
+	public Aluno(String nome, String endereco, int cpf, String dta_nascimento, String dta_ingresso,
 			String curso, String periodo, int matricula,String senha,int telefone,String nivelEscolaridade ) {
 
 		super();
 		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 
-		this.id = id;
 		this.nome = nome;
 		this.endereco = endereco;
 		this.cpf = cpf;

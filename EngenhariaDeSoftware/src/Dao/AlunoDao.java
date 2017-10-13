@@ -62,6 +62,7 @@ public class AlunoDao {
 
 	        while (rs.next()) {
 	            Aluno reg = new Aluno();
+	            reg.setId(rs.getInt("id"));
 	            reg.setNome(rs.getString("nome"));
 	            reg.setDta_ingresso(rs.getDate("data_de_ingresso"));
 	            reg.setNivelEscolaridade(rs.getString("nivel_de_escolaridade"));	            
