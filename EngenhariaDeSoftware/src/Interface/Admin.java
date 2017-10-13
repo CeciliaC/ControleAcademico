@@ -4,10 +4,17 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Dao.AlunoDao;
+import Model.Aluno;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JTabbedPane;
@@ -19,6 +26,7 @@ import javax.swing.JTextPane;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.ListModel;
 
 public class Admin extends JFrame {
 
@@ -57,8 +65,22 @@ public class Admin extends JFrame {
 		JPanel Aluno = new JPanel();
 		tabbedPane.addTab("Aluno", null, Aluno, null);
 		
+		
+		
+		// METODO LISTAR ALUNO
+		AlunoDao aluno = new AlunoDao();
 		JList list = new JList();
 		
+		List<Aluno> alunos = null;
+		try {
+			alunos = aluno.listar();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+				
+		list.setListData(alunos.toArray());
+		
+
 		
 		JButton adicionaraluno_botao = new JButton("Adicionar Aluno");
 		

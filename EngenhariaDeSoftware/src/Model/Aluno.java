@@ -152,6 +152,14 @@ public class Aluno {
 		this.nivelEscolaridade = nivelEscolaridade;
 	}
 
+	@Override
+	public String toString() {
+		return "Aluno [id=" + id + ", nome=" + nome + ", endereco=" + endereco + ", cpf=" + cpf + ", dta_nascimento="
+				+ dta_nascimento + ", dta_ingresso=" + dta_ingresso + ", curso=" + curso + ", periodo=" + periodo
+				+ ", matricula=" + matricula + ", senha=" + senha + ", telefone=" + telefone + ", nivelEscolaridade="
+				+ nivelEscolaridade + "]";
+	}
+
 	
 	
 
