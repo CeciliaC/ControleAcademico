@@ -1,6 +1,6 @@
 package JunitClassesTestes;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -11,12 +11,14 @@ import org.junit.Test;
 
 import Dao.AlunoDao;
 import Model.Aluno;
-import javafx.scene.chart.PieChart.Data;
 
-public class JunitAluno {
+public class JunitAlunoDao {
+	
 	@Test
-	public void TestandoAluno() throws ParseException {
+	public void TesteInserirAluno() throws SQLException, ParseException {
+		AlunoDao alunodao = new AlunoDao();
 		Aluno aluno = new Aluno();
+		
 		aluno.setNome("fulano");
 		aluno.setCpf(123);
 		aluno.setEndereco("Rua tal");
@@ -32,19 +34,24 @@ public class JunitAluno {
 		aluno.setTelefone(123);
 		aluno.setNivelEscolaridade("default");
 		
-		assertEquals("fulano",aluno.getNome());
-		assertEquals("Rua tal",aluno.getEndereco());
-		assertEquals(123,aluno.getCpf());
-		assertEquals(df.parse("10/10/2010"),aluno.getDta_nascimento());
-		assertEquals(df.parse("10/10/1910"),aluno.getDta_ingresso());
-		assertEquals("ciencia computacao",aluno.getCurso());
-		assertEquals("informatica",aluno.getdepartamento());
-		assertEquals(121990,aluno.getMatricula());
-		assertEquals("123",aluno.getSenha());
-		assertEquals("default",aluno.getNivelEscolaridade());
-		assertEquals(123,aluno.getTelefone());
+		assertEquals("Teste Inserir foi um sucesso",true,alunodao.inserir(aluno));
+		
+	}
+	
+	@Test
+	public void TesteRemoverAluno() throws SQLException {
+		AlunoDao alunodao = new AlunoDao();
+		Aluno aluno = new Aluno();
+		aluno.setId(2);
+		assertEquals("Teste Remover foi um sucesso",true,alunodao.remove(aluno));
+		
 	}
 	
 	
-
+	@Test
+	public void TesteListandoAluno() throws SQLException {
+		AlunoDao alunodao = new AlunoDao();
+		assertEquals("Teste Listando foi um sucesso",2,alunodao.listar().size());
+		
+	}
 }

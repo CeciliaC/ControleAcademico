@@ -27,7 +27,7 @@ public class AlunoDao {
 	    }
 	  // INSERINDO ALUNOS  
 	    
-	    public void inserir(Aluno aluno){  
+	    public boolean inserir(Aluno aluno){  
             String sql = "INSERT INTO aluno(nome,data_de_ingresso,nivel_de_escolaridade,endereco,data_de_nascimento,cpf,senha,telefone) "+"VALUES(?,?,?,?,?,?,?,?)";  
             
             try {  
@@ -46,6 +46,7 @@ public class AlunoDao {
              
                 stmt.execute();  
                 stmt.close();
+                return true;
             } catch (SQLException u) {  
                 throw new RuntimeException(u);  
         }  
@@ -81,12 +82,13 @@ public class AlunoDao {
 	        return aluno;
 	    }
 	    // REMOVER ALUNO
-	    public void remove(Aluno id) throws SQLException {
+	    public boolean remove(Aluno id) throws SQLException {
 	        String sql = "DELETE FROM aluno where id=?";
 	        PreparedStatement stmt = con.prepareStatement(sql);
 	        stmt.setInt(1, id.getId());
 	        stmt.execute();
 	        stmt.close();
+			return true;
 	    }
 
 		
