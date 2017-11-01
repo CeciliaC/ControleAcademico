@@ -34,7 +34,7 @@ public class AdicionarAlunoAdmin extends JFrame {
 	private JTextField nome;
 	private JTextField matricula;
 	private JTextField curso;
-	private JTextField periodo;
+	private JTextField departamento;
 	private JTextField telefone;
 	private JTextField senha;
 	JComboBox escolaridade = new JComboBox();
@@ -105,8 +105,8 @@ public class AdicionarAlunoAdmin extends JFrame {
 		
 		JLabel lblPerodo = new JLabel("Per\u00EDodo:");
 		
-		periodo = new JTextField();
-		periodo.setColumns(10);
+		departamento = new JTextField();
+		departamento.setColumns(10);
 		
 		JButton cadastroMatricula_botao = new JButton("Confirmar");
 		
@@ -123,13 +123,13 @@ public class AdicionarAlunoAdmin extends JFrame {
 				String Vnome = nome.getText();
 				int Vmatricula = 2;
 				String Vcurso = curso.getText();
-				String Vperiodo = periodo.getText();
+				String Vdepartamento = departamento.getText();
 				String Vsenha = senha.getText();
 				int Vtelefone = Integer.parseInt(telefone.getText());
 				String Vescolaridade = escolaridade.getSelectedItem()+"";
 				
 				
-				Aluno aluno = new Aluno(Vnome,Vendereco,Vcpf,Vdta_nasc,Vdta_ing,Vcurso,Vperiodo,Vmatricula,Vsenha,Vtelefone,Vescolaridade);
+				Aluno aluno = new Aluno(Vnome,Vendereco,Vcpf,Vdta_nasc,Vdta_ing,Vcurso,Vdepartamento,Vmatricula,Vsenha,Vtelefone,Vescolaridade);
 				
 				alunodao.inserir(aluno);
 				
@@ -193,7 +193,7 @@ public class AdicionarAlunoAdmin extends JFrame {
 								.addComponent(lblPerodo))
 							.addGap(34)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-								.addComponent(periodo)
+								.addComponent(departamento)
 								.addComponent(curso)
 								.addComponent(nome, GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
 								.addComponent(endereco)
@@ -264,7 +264,7 @@ public class AdicionarAlunoAdmin extends JFrame {
 					.addGap(18)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblPerodo)
-						.addComponent(periodo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(departamento, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
 					.addComponent(cadastroMatricula_botao)
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))

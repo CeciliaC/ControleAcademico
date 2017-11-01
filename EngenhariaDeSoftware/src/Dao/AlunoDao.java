@@ -29,6 +29,7 @@ public class AlunoDao {
 	    
 	    public void inserir(Aluno aluno){  
             String sql = "INSERT INTO aluno(nome,data_de_ingresso,nivel_de_escolaridade,endereco,data_de_nascimento,cpf,senha,telefone) "+"VALUES(?,?,?,?,?,?,?,?)";  
+            
             try {  
                 PreparedStatement stmt = con.prepareStatement(sql);  
                 stmt.setString(1, aluno.getNome());  

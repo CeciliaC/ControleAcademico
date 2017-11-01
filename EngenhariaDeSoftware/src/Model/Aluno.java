@@ -12,14 +12,14 @@ public class Aluno {
 	Date dta_nascimento;
 	Date dta_ingresso;
 	String curso;
-	String periodo;
+	String departamento;
 	int matricula;
 	String senha;
 	int telefone;
 	String nivelEscolaridade;
 
 	public Aluno(String nome, String endereco, int cpf, String dta_nascimento, String dta_ingresso,
-			String curso, String periodo, int matricula,String senha,int telefone,String nivelEscolaridade ) {
+			String curso, String departamento, int matricula,String senha,int telefone,String nivelEscolaridade ) {
 
 		super();
 		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
@@ -43,7 +43,7 @@ public class Aluno {
 		}
 
 		this.curso = curso;
-		this.periodo = periodo;
+		this.departamento = departamento;
 		this.matricula = matricula;
 		this.senha = senha;
 		this.telefone = telefone;
@@ -111,12 +111,12 @@ public class Aluno {
 		this.curso = curso;
 	}
 
-	public String getPeriodo() {
-		return periodo;
+	public String getdepartamento() {
+		return departamento;
 	}
 
-	public void setPeriodo(String periodo) {
-		this.periodo = periodo;
+	public void setdepartamento(String departamento) {
+		this.departamento = departamento;
 	}
 
 	public int getMatricula() {
@@ -154,7 +154,7 @@ public class Aluno {
 	@Override
 	public String toString() {
 		return "Aluno [id=" + id + ", nome=" + nome + ", endereco=" + endereco + ", cpf=" + cpf + ", dta_nascimento="
-				+ dta_nascimento + ", dta_ingresso=" + dta_ingresso + ", curso=" + curso + ", periodo=" + periodo
+				+ dta_nascimento + ", dta_ingresso=" + dta_ingresso + ", curso=" + curso + ", departamento=" + departamento
 				+ ", matricula=" + matricula + ", senha=" + senha + ", telefone=" + telefone + ", nivelEscolaridade="
 				+ nivelEscolaridade + "]";
 	}
