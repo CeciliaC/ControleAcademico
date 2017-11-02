@@ -7,7 +7,6 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Date;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -26,16 +25,18 @@ import javax.swing.border.EmptyBorder;
 import org.eclipse.wb.swing.FocusTraversalOnArray;
 
 import Dao.LoginAlunoDao;
+import Model.Aluno;
 
 public class LoginAluno extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtAluno;
 	private JTextField txtAgronegcio;
-	private JTextField textField_1;
+	private JTextField dt_nasc;
 	private JTextField txtAv;
 	private JTextField textField;
 	private JTextField textField_2;
+	private Aluno a = new Aluno();
 
 	/**
 	 * Launch the application.
@@ -80,10 +81,10 @@ public class LoginAluno extends JFrame {
 		
 		JLabel lblEndereo = new JLabel("Endere\u00E7o:");
 		
-		textField_1 = new JTextField();
-		textField_1.setText("11/09/1991");
-		textField_1.setEditable(false);
-		textField_1.setColumns(10);
+		dt_nasc = new JTextField();
+		dt_nasc.setText("11/09/1991");
+		dt_nasc.setEditable(false);
+		dt_nasc.setColumns(10);
 		
 		txtAv = new JTextField();
 		txtAv.setText("Av. 1");
@@ -235,7 +236,7 @@ public class LoginAluno extends JFrame {
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addComponent(lblDataDeNascimento)
 							.addGap(1)
-							.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE)))
+							.addComponent(dt_nasc, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE)))
 					.addGap(28)
 					.addComponent(panel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 					.addContainerGap(77, Short.MAX_VALUE))
@@ -267,7 +268,7 @@ public class LoginAluno extends JFrame {
 								.addGroup(gl_contentPane.createSequentialGroup()
 									.addGap(3)
 									.addComponent(lblDataDeNascimento))
-								.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+								.addComponent(dt_nasc, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 							.addGap(8)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 								.addComponent(txtAv, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
@@ -331,10 +332,10 @@ public class LoginAluno extends JFrame {
 		);
 		panel.setLayout(gl_panel);
 		contentPane.setLayout(gl_contentPane);
-		contentPane.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{txtAv, lblNome, txtAluno, lblCurso, txtAgronegcio, lblDataDeNascimento, textField_1, lblEndereo, textArea, lblPara, textField, lblAssunto, textField_2, btnEnviar}));
+		contentPane.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{txtAv, lblNome, txtAluno, lblCurso, txtAgronegcio, lblDataDeNascimento, dt_nasc, lblEndereo, textArea, lblPara, textField, lblAssunto, textField_2, btnEnviar}));
 		
 		LoginAlunoDao lad = new LoginAlunoDao();
-		LoginAluno.this.preencherPerfil(lad.getNome(), "", "");
+		
 		
 		Situacao_Academica.addActionListener(new ActionListener() {
 			
@@ -342,6 +343,7 @@ public class LoginAluno extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				SitucaoAcademica as = new SitucaoAcademica();
+				as.setA(a);
 				as.setVisible(true);
 				LoginAluno.this.setVisible(false);
 				LoginAluno.this.dispose();
@@ -353,6 +355,7 @@ public class LoginAluno extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				Matricula m = new Matricula();
+				m.setA(a);
 				m.setVisible(true);
 				LoginAluno.this.setVisible(false);
 				LoginAluno.this.dispose();
@@ -360,8 +363,21 @@ public class LoginAluno extends JFrame {
 		});
 		
 	}
-	public void preencherPerfil(String nome, String curso, String endereco) {
-		txtAluno.setText(nome);
+	
+	public void preencherPerfil() {
+		txtAluno.setText(a.getNome());
+		dt_nasc.setText(String.valueOf(a.getDta_nascimento()));
+		txtAv.setText(a.getEndereco());
+	}
+	
+	public Aluno getA() {
+		return a;
+	}
+
+	public void setA(Aluno a) {
+		this.a = a;
+		//System.out.println("Nome: " + a.getNome());
+		this.preencherPerfil();
 	}
 	
 }

@@ -11,7 +11,7 @@ import org.junit.Test;
 
 import Dao.AlunoDao;
 import Model.Aluno;
-import javafx.scene.chart.PieChart.Data;
+//import javafx.scene.chart.PieChart.Data;
 
 public class JunitAluno {
 	@Test

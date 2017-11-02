@@ -1,21 +1,21 @@
 package Interface;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JButton;
+import javax.swing.border.EmptyBorder;
+
+import Model.Aluno;
 
 public class SitucaoAcademica extends JFrame {
 
@@ -26,6 +26,11 @@ public class SitucaoAcademica extends JFrame {
 	private JTextField cred_faltam;
 	private JTextField pmg;
 	private JTextField cred_exigidos;
+	private Aluno a = new Aluno();
+
+	public void setA(Aluno a) {
+		this.a = a;
+	}
 
 	/**
 	 * Launch the application.
@@ -177,6 +182,7 @@ public class SitucaoAcademica extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				LoginAluno la = new LoginAluno();
+				la.setA(a);
 				la.setVisible(true);
 				SitucaoAcademica.this.setVisible(false);
 				SitucaoAcademica.this.dispose();

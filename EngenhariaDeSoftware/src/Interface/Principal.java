@@ -10,19 +10,20 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
 import Dao.PrincipalDao;
+import Model.Aluno;
 
 public class Principal extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField_Login;
-	private JTextField textField_Senha;
+	private JPasswordField textField_Senha;
 	private JLabel lblLogin;
 
 	/**
@@ -55,7 +56,7 @@ public class Principal extends JFrame {
 		textField_Login.setForeground(Color.BLACK);
 		textField_Login.setColumns(10);
 		
-		textField_Senha = new JTextField();
+		textField_Senha = new JPasswordField();
 		textField_Senha.setColumns(10);
 		
 		JLabel lblSenha = new JLabel("Senha");
@@ -74,6 +75,7 @@ public class Principal extends JFrame {
 				
 				if(pd.buscarLoginAluno(nome, psd)) {
 					LoginAluno la = new LoginAluno();
+					la.setA(pd.getAluno());
 					la.setVisible(true);
 					Principal.this.setVisible(false);
 					Principal.this.dispose();

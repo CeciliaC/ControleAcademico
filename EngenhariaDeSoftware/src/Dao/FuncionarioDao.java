@@ -28,7 +28,7 @@ public class FuncionarioDao {
 	    }
 	    
 	    
-	    public void inserir(Funcionario funcionario){  
+	    public boolean inserir(Funcionario funcionario){  
             String sql = "INSERT INTO funcionario(nome,data_de_nascimento,telefone,email,data_de_ingresso,nivel_de_escolaridade,endereco,cpf,senha) "+"VALUES(?,?,?,?,?,?,?,?,?)";  
             try {  
                 PreparedStatement stmt = con.prepareStatement(sql);  
@@ -49,8 +49,10 @@ public class FuncionarioDao {
                                
                 stmt.execute();  
                 stmt.close();
+                return true;
             } catch (SQLException u) {  
-                throw new RuntimeException(u);  
+                //throw new RuntimeException(u);
+                return false;
         }  
     }  
     //LISTANDO TODOS OS FUNCIONARIOS
@@ -86,12 +88,15 @@ public class FuncionarioDao {
 	    
 	    
 	    // REMOVER FUNCIONARIO
-	    public void remove(Funcionario id) throws SQLException {
+	    public boolean remove(Funcionario id) throws SQLException{
 	        String sql = "DELETE FROM funcionario where id=?";
-	        PreparedStatement stmt = con.prepareStatement(sql);
-	        stmt.setInt(1, id.getId());
-	        stmt.execute();
-	        stmt.close();
+	        PreparedStatement stmt;
+			stmt = con.prepareStatement(sql);
+			stmt.setInt(1, id.getId());
+			stmt.execute();
+			stmt.close();
+			return true;
+			
 	    }
 	    
 }

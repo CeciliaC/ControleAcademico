@@ -52,6 +52,42 @@ public class AlunoDao {
         }  
     }  
 	    
+	    
+ //BUSCAR ALUNO
+	    
+//	    
+//	    public Aluno buscar(int cpf) throws SQLException {
+//	   
+//	    	String sql = "SELECT * FROM aluno where cpf = ?";
+//	    	
+//	        PreparedStatement stmt = con.prepareStatement(sql);
+//	        ResultSet rs = stmt.executeQuery();
+//	        stmt.setInt(1, cpf);
+//	      
+//	        
+//	       
+//
+//	        Aluno aluno = new Aluno();
+//	       
+//	        
+//	            Aluno reg = new Aluno();
+//	            reg.setId(rs.getInt("id"));
+//	            reg.setNome(rs.getString("nome"));
+//	            reg.setDta_ingresso(rs.getDate("data_de_ingresso"));
+//	            reg.setNivelEscolaridade(rs.getString("nivel_de_escolaridade"));	            
+//	            reg.setEndereco(rs.getString("endereco"));
+//	            reg.setDta_nascimento(rs.getDate("data_de_nascimento"));
+//	            reg.setCpf(rs.getInt("cpf"));
+//	            reg.setSenha(rs.getString("senha"));
+//	            reg.setTelefone(rs.getInt("telefone"));
+//	            
+//	      
+//	        
+//	        rs.close();
+//	        stmt.close();
+//	        return aluno;
+//	    }
+	    
 	    //LISTANDO TODOS OS ALUNOS
 	    
 	    
