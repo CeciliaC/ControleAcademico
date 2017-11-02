@@ -55,38 +55,38 @@ public class AlunoDao {
 	    
  //BUSCAR ALUNO
 	    
-//	    
-//	    public Aluno buscar(int cpf) throws SQLException {
-//	   
-//	    	String sql = "SELECT * FROM aluno where cpf = ?";
-//	    	
-//	        PreparedStatement stmt = con.prepareStatement(sql);
-//	        ResultSet rs = stmt.executeQuery();
-//	        stmt.setInt(1, cpf);
-//	      
-//	        
-//	       
-//
-//	        Aluno aluno = new Aluno();
-//	       
-//	        
-//	            Aluno reg = new Aluno();
-//	            reg.setId(rs.getInt("id"));
-//	            reg.setNome(rs.getString("nome"));
-//	            reg.setDta_ingresso(rs.getDate("data_de_ingresso"));
-//	            reg.setNivelEscolaridade(rs.getString("nivel_de_escolaridade"));	            
-//	            reg.setEndereco(rs.getString("endereco"));
-//	            reg.setDta_nascimento(rs.getDate("data_de_nascimento"));
-//	            reg.setCpf(rs.getInt("cpf"));
-//	            reg.setSenha(rs.getString("senha"));
-//	            reg.setTelefone(rs.getInt("telefone"));
-//	            
-//	      
-//	        
-//	        rs.close();
-//	        stmt.close();
-//	        return aluno;
-//	    }
+	    
+	    public Aluno buscar(int cpf) throws SQLException {
+	    	 // TODO Auto-generated method stub
+	    	 Aluno aluno = new Aluno();
+	    	 
+	    	 String sql = "Select * from aluno where cpf = ?";
+	    	 PreparedStatement ps = con.prepareStatement(sql);
+	    	 try {
+	    	
+	    	 ps.setInt(1,cpf);
+	    	 ResultSet rs = ps.executeQuery();
+	    	 while (rs.next()){
+	    		 aluno.setId(rs.getInt("id"));
+		            aluno.setNome(rs.getString("nome"));
+		            aluno.setDta_ingresso(rs.getDate("data_de_ingresso"));
+		            aluno.setNivelEscolaridade(rs.getString("nivel_de_escolaridade"));	            
+		            aluno.setEndereco(rs.getString("endereco"));
+		            aluno.setDta_nascimento(rs.getDate("data_de_nascimento"));
+		            aluno.setCpf(rs.getInt("cpf"));
+		            aluno.setSenha(rs.getString("senha"));
+		            aluno.setTelefone(rs.getInt("telefone"));
+	    	 }
+	    	 ps.close();
+	    	 rs.close();
+	    	 return aluno;
+	    	 
+	    	} catch (Exception e) {
+	    	 // TODO: handle exception
+	    	 }
+	    	 return null;
+	    	 
+	    	}
 	    
 	    //LISTANDO TODOS OS ALUNOS
 	    
