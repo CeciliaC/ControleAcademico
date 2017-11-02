@@ -16,7 +16,7 @@ import Model.Aluno;
 
 public class JunitAlunoDao {
 	
-	//@Test //->para rodar o teste remover o comentario de @Test
+	@Test 
 	public void TesteInserirAluno() throws SQLException, ParseException {
 		AlunoDao alunodao = new AlunoDao();
 		Aluno aluno = new Aluno();
@@ -36,22 +36,22 @@ public class JunitAlunoDao {
 		aluno.setTelefone(123);
 		aluno.setNivelEscolaridade("default");
 		
-		boolean result = alunodao.inserir(aluno);
-		
-		//Assert.assertEquals("Teste Inserir foi um sucesso",true,alunodao.inserir(aluno));
-		Assert.assertTrue("Teste Inserir executado com sucesso", result);
+		alunodao.inserir(aluno);
+		Assert.assertEquals(123,alunodao.buscar(123).getCpf());
+
 		
 	}
 	
-	//@Test //->para rodar o teste remover o comentario de @Test
+	@Test //->para rodar o teste remover o comentario de @Test
 	public void TesteRemoverAluno() throws SQLException {
 		AlunoDao alunodao = new AlunoDao();
 		Aluno aluno = new Aluno();
 		//CONFERIR ID NO BANCO DE DADOS!!!
-		aluno.setId(9);
-		boolean result = alunodao.remove(aluno);
-		//Assert.assertEquals("Teste Remover foi um sucesso",true,alunodao.remove(aluno));
-		Assert.assertTrue("Teste Remover executado com sucesso", result);
+		aluno.setId(1);
+		alunodao.remove(aluno);
+		
+		Assert.assertEquals(123,alunodao.buscar(123).getCpf());
+//		Assert.assertTrue("Teste Remover executado com sucesso", result);
 	}
 	
 	//@Test //->para rodar o teste remover o comentario de @Test
