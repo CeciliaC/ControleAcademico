@@ -34,7 +34,6 @@ public class AdicionarAlunoAdmin extends JFrame {
 	private JTextField nome;
 	private JTextField matricula;
 	private JTextField curso;
-	private JTextField departamento;
 	private JTextField telefone;
 	private JTextField senha;
 	JComboBox escolaridade = new JComboBox();
@@ -103,11 +102,6 @@ public class AdicionarAlunoAdmin extends JFrame {
 		curso = new JTextField();
 		curso.setColumns(10);
 		
-		JLabel lblPerodo = new JLabel("Per\u00EDodo:");
-		
-		departamento = new JTextField();
-		departamento.setColumns(10);
-		
 		JButton cadastroMatricula_botao = new JButton("Confirmar");
 		
 		cadastroMatricula_botao.addActionListener(new ActionListener() {
@@ -121,15 +115,14 @@ public class AdicionarAlunoAdmin extends JFrame {
 				String Vdta_ing = dt_ing.getText();
 				String Vendereco = endereco.getText();
 				String Vnome = nome.getText();
-				int Vmatricula = 2;
+				int Vmatricula = 1;
 				String Vcurso = curso.getText();
-				String Vdepartamento = departamento.getText();
 				String Vsenha = senha.getText();
 				int Vtelefone = Integer.parseInt(telefone.getText());
 				String Vescolaridade = escolaridade.getSelectedItem()+"";
 				
 				
-				Aluno aluno = new Aluno(Vnome,Vendereco,Vcpf,Vdta_nasc,Vdta_ing,Vcurso,Vdepartamento,Vmatricula,Vsenha,Vtelefone,Vescolaridade);
+				Aluno aluno = new Aluno(Vnome,Vendereco,Vcpf,Vdta_nasc,Vdta_ing,Vcurso,Vmatricula,Vsenha,Vtelefone,Vescolaridade);
 				
 				alunodao.inserir(aluno);
 				
@@ -189,11 +182,9 @@ public class AdicionarAlunoAdmin extends JFrame {
 								.addComponent(lblEndereo)
 								.addComponent(lblCpf)
 								.addComponent(lblDataDeNascimento)
-								.addComponent(lblCurso)
-								.addComponent(lblPerodo))
+								.addComponent(lblCurso))
 							.addGap(34)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-								.addComponent(departamento)
 								.addComponent(curso)
 								.addComponent(nome, GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
 								.addComponent(endereco)
@@ -214,8 +205,8 @@ public class AdicionarAlunoAdmin extends JFrame {
 									.addPreferredGap(ComponentPlacement.RELATED)
 									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 										.addComponent(escolaridade, 0, 183, Short.MAX_VALUE)
-										.addComponent(senha, GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
-										.addComponent(telefone))))
+										.addComponent(senha, GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
+										.addComponent(telefone, 183, 183, 183))))
 							.addGap(169))
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGap(332)
@@ -261,11 +252,7 @@ public class AdicionarAlunoAdmin extends JFrame {
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblCurso)
 						.addComponent(curso, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblPerodo)
-						.addComponent(departamento, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
+					.addGap(56)
 					.addComponent(cadastroMatricula_botao)
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);

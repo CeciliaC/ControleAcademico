@@ -19,7 +19,7 @@ public class Aluno {
 	String nivelEscolaridade;
 
 	public Aluno(String nome, String endereco, int cpf, String dta_nascimento, String dta_ingresso,
-			String curso, String departamento, int matricula,String senha,int telefone,String nivelEscolaridade ) {
+			String curso, int matricula,String senha,int telefone,String nivelEscolaridade ) {
 
 		super();
 		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
@@ -43,7 +43,6 @@ public class Aluno {
 		}
 
 		this.curso = curso;
-		this.departamento = departamento;
 		this.matricula = matricula;
 		this.senha = senha;
 		this.telefone = telefone;

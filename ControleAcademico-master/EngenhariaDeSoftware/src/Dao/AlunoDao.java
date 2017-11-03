@@ -28,10 +28,19 @@ public class AlunoDao {
 	  // INSERINDO ALUNOS  
 	    
 	    public boolean inserir(Aluno aluno){  
+	    	int a;
             String sql = "INSERT INTO aluno(nome,data_de_ingresso,nivel_de_escolaridade,endereco,data_de_nascimento,cpf,senha,telefone) "+"VALUES(?,?,?,?,?,?,?,?)";  
+            String sql1 = "INSERT INTO curso(nome,turno)" + "VALUES(?,?)";
+            String sql12 = "INSERT INTO aluno_curso(aluno_id,curso_id)" + "VALUES(?,?)";
             
-            try {  
-                PreparedStatement stmt = con.prepareStatement(sql);  
+            String buscasql = "SELECT id.c idcurso" + "FROM curso as c";
+      
+            try {       
+            	
+                PreparedStatement stmt = con.prepareStatement(sql);
+                PreparedStatement stmt1 = con.prepareStatement(sql1);
+                PreparedStatement stmt12 = con.prepareStatement(sql12);
+                
                 stmt.setString(1, aluno.getNome());  
                 java.sql.Date dtingre = new Date(aluno.getDta_ingresso().getTime());
                 stmt.setDate(2, dtingre);
@@ -43,7 +52,12 @@ public class AlunoDao {
                 stmt.setString(7, aluno.getSenha());
                 stmt.setInt(8,aluno.getTelefone());
                 
-             
+                stmt1.setString(1, aluno.getCurso());
+                stmt1.setString(2, aluno.getdepartamento());
+                
+                stmt12.setInt(1, aluno.getMatricula());             
+                stmt12.setInt(2, 1);
+
                 stmt.execute();  
                 stmt.close();
                 return true;
@@ -87,14 +101,14 @@ public class AlunoDao {
 	    	 return null;
 	    	 
 	    	}
-	    //Busca com consulta certa :DDDDDD
+	    
 	    
 	    public Aluno buscarEsp(int id) throws SQLException {
 	    	 // TODO Auto-generated method stub
 	    	 Aluno aluno = new Aluno();
 	    	 
 	    	 String sql = ""
-	    			 + "SELECT a.id, a.nome, a.endereco, a.cpf, a.data_de_nascimento, a.data_de_ingresso, c.nome, c.departamento, a.id,a.senha, a.telefone, a.nivel_de_escolaridade "
+	    			 + "SELECT a.id, a.nome, a.endereco, a.cpf, a.data_de_nascimento, a.data_de_ingresso, c.nome, c.departamento,a.senha, a.telefone, a.nivel_de_escolaridade "
 	    			 + "FROM aluno_curso as x, curso as c, aluno as a "
 	    			 + "WHERE x.aluno_id = a.id "
 	    			 + "	AND x.curso_id = c.id_curso "
@@ -129,7 +143,7 @@ public class AlunoDao {
 	    
 	    //LISTANDO TODOS OS ALUNOS
 	    
-	    
+	  //Busca com consulta certa :DDDDDD
 	    public List<Aluno> listar() throws SQLException {
 	        
 	    	 String sql = ""
